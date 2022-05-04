@@ -1,0 +1,29 @@
+<div class="container py-5 ">
+    <div class="row">
+        {{#each projects}}
+        <div class="col-md-4 my-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img class="card-img-top" src="/img/fileicongrey.png" alt="Card image cap" style="width: 50%;">
+                    <h3 class="card-title text-uppercase">
+                        {{title}}
+                    </h3>
+                    <p>Creado por: {{propietario}}</p>
+                    <p>Participantes: {{participantes}}</p>
+                    <p>Actualizado {{timeago updated_at}}</p>
+                    <a href="/projects/show/{{proy_id}}" class="btn btn-primary">Ver Detalles</a>
+                    <a href="/projects/open/{{accessToken}}" class="btn btn-secondary" target="blank">Abrir
+                        Proyecto</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are no projects created yet</p>
+                <a class="btn btn-success" href="/projects/add">Create One</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="container py-5 ">
+    <div class="row">
+        <div class="row"></div>
+        <div class="col card">
+            <div class="row my-2">
+                <div class="col text-center">
+                    <h2>{{project.title}}</h2>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-3">
+                    <h3>Creado por:</h3>
+                </div>
+                {{#if isOwned}}
+                <div class="col">
+                    <h4 class="font-weight-normal text-primary">You</h4>
+                </div>
+                {{else}}
+                <div class="col">
+                    <h4 class="font-weight-normal">{{project.propietario}}</h4>
+                </div>
+                {{/if}}
+            </div>
+            <div class="row my-2">
+                <div class="col-3">
+                    <h3>Fecha Creacion</h3>
+                </div>
+                <div class="col">
+                    <h4 class="font-weight-normal">{{timeago project.created_at}}</h5>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-3">
+                    <h3>Ultima Edicion</h3>
+                </div>
+                <div class="col">
+                    <h4 class="font-weight-normal">{{timeago project.updated_at}}</h4>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-3">
+                    <h3>Access Token</h3>
+                </div>
+                <div class="col-7">
+                    <p id="accessToken" style="width: 100%">{{project.accessToken}}</p>
+
+                </div>
+                <div class="col-1">
+                    <input type="button" class="btn btn-light" onclick="copyToken()" data-toggle="tooltip"
+                        title="Copy to Clipboard" value="Copy Token" readonly />
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-3">
+                    <h3>Join Link</h3>
+                </div>
+                <div class="col-7">
+                    <p id="joinLink" style="width: 100%">{{project.joinLink}}</p>
+
+                </div>
+                <div class="col-1">
+                    <input type="button" class="btn btn-light" onclick="copyLink()" data-toggle="tooltip"
+                        title="Copy to Clipboard" value="Copy Link" readonly />
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <h3>Participantes: </h3>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Nombre Completo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each members}}
+                            <tr>
+                                <td>{{username}}</td>
+                                <td>{{fullname}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row my-5">
+                <a href="/projects" class="btn btn-secondary col m-2">Volver</a>
+                <a href="/projects/open/{{project.accessToken}}" class="btn btn-success col m-2"
+                    target="blank">Abrir</a>
+                {{#if isOwned}}
+                <a href="/projects/edit/{{project.proy_id}}" class="btn btn-warning col m-2">Edit</a>
+                <a href="/projects/delete/{{project.proy_id}}" class="btn btn-danger col m-2">Eliminar</a>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+</div>
